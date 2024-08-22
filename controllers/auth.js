@@ -21,6 +21,11 @@ router.post('/sign-up', async (req, res) => {
     // "remember" only the user's _id in the session object
     req.session.user = { _id: user._id };
     req.session.save();
+    if (user.role === 'dj') {
+      return res.redirect('/dj');
+    } else if (user.role === 'client') {
+      return res.redirect('/client')
+    }
   } catch (err) {
     console.log(err);
   }
