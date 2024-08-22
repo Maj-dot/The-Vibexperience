@@ -2,11 +2,14 @@ const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
-// Fake "protected" route that would require
-// a logged in user.
-// GET /todos/new
-router.get('/new', ensureLoggedIn, (req, res) => {
+router.get('/', (req, res) => {
+  res.render('/');
+});
+
+router.get('/auth/sign-up', ensureLoggedIn, (req, res) => {
   res.send('Yay, you were logged in!');
 });
+
+
 
 module.exports = router;
