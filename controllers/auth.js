@@ -22,7 +22,7 @@ router.post('/sign-up', async (req, res) => {
     req.session.user = { _id: user._id };
     req.session.save();
     if (user.role === 'dj') {
-      return res.redirect('/djDashboard/home');
+      return res.redirect('/home');
     } else if (user.role === 'client') {
       return res.redirect('/client')
     }
@@ -37,10 +37,12 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({username: req.body.username});
     if (!user) {
+      
       return res.redirect('/auth/login');
     }
+    console.log(user, "In Auth");
     if (bcrypt.compareSync(req.body.password, user.password)) {
-      req.session.user = { _id: user._id };
+      req.session.user = { _id: user._id, username: user.username, role: user.role };
       req.session.save();
       // Perhaps update to some other functionality
       return res.redirect('/');
@@ -59,8 +61,11 @@ router.get('/login', async (req, res) => {
 
 // GET /auth/logout (logout)
 router.get('/logout', (req, res) => {
+  console.log('logout');
   req.session.destroy();
-  res.redirect('/');
+  res.redirect('/');  
 });
+
+
 
 module.exports = router;

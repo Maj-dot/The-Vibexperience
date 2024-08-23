@@ -41,20 +41,17 @@ const ensureLoggedIn = require('./middleware/ensureLoggedIn');
 // '/auth' is a "starts with" path that all paths
 // within authCtrl are appended to
 app.use('/auth', require('./controllers/auth'));
-app.use('/home', require('./controllers/home'));
+app.use('/', require('./controllers/home'));
 // If you wanted to protect ALL routes 
 // app.use('/todos', ensureLoggedIn, require('./controllers/todos'));
 
 
 // GET / (root/landing page)
-app.get('/', async (req, res) => {
-  res.render('home.ejs');
-});
+//app.get('/', async (req, res) => {
+  //res.render('home.ejs');
+//});
 
-// GET / (dj dashboard page)
-app.get('/djDashboard/home', async (req, res) => {
-  res.render('djDashboard/home.ejs');
-});
+
 
 
 // Set the port from environment variable or default to 3000

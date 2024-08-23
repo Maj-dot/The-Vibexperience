@@ -3,13 +3,21 @@ const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
 router.get('/', (req, res) => {
-  res.render('/');
+  const user = req.session.user
+  console.log(user);
+  if (user?.role==='dj') {
+    res.render('djDashboard/home.ejs')
+  } else if (user?.role==='client') {
+    res.render('clientDashboard/home.ejs')
+  } else {
+    res.render('home.ejs')
+  }
 });
 
-router.get('/auth/sign-up', ensureLoggedIn, (req, res) => {
-  res.send('Yay, you were logged in!');
-});
 
-
+// GET / (dj dashboard page)
+//router.get('/djDashboard', async (req, res) => {//
+  //res.render('home.ejs');
+//});
 
 module.exports = router;

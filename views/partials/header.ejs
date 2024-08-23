@@ -14,13 +14,11 @@
     <a href="/">HOME</a>
 
     <div>
-      <% if ('dj') { %>
-        <a href="/views/djDashboard"
+      <% if (user) { %>
+        <a href="/">HOME</a>
         <a href="/auth/logout">LOG OUT</a>&nbsp;&nbsp;
-        <span>Wecome, <%= user.username %></span>  
-      <% } else if ('client') { %>
-        <a href="/views/clientDashboard/"
-        <a href="/auth/logout">LOG OUT</a>&nbsp;&nbsp;
+        <span>Welcome, <%= user.username %></span>  
+      
       <% } else { %>  
         <a href="/auth/sign-up">SIGN UP</a>
         <a href="/auth/login">LOG IN</a>
