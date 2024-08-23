@@ -5,6 +5,7 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
 
+
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -35,13 +36,15 @@ app.use(addUserToReqAndLocals);
 
 
 // Routes/Controllers
-
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
+const booking = require('./controllers/booking')
 
 // '/auth' is a "starts with" path that all paths
 // within authCtrl are appended to
 app.use('/auth', require('./controllers/auth'));
 app.use('/', require('./controllers/home'));
+app.use('/bookings', require('./controllers/booking'));
+
 // If you wanted to protect ALL routes 
 // app.use('/todos', ensureLoggedIn, require('./controllers/todos'));
 
