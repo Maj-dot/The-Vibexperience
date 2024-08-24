@@ -10,7 +10,7 @@ router.get('/new', (req, res) => {
 
 //Handle creation of new booking
 router.post('/', (req, res) => {
-    const newBooking = Booking({
+    const newBooking = {
         dj_id: req.body.dj_id,
         client_id: req.body.client_id,
         event_date: req.body.event_date,
@@ -18,10 +18,10 @@ router.post('/', (req, res) => {
         status: req.body.status,
         total_cost: req.body.total_cost,
         notes: req.body.notes
-    });
+    };
 
-    newBooking.save()
-    res.redirect('/bookings')
+    newBooking.save(res.redirect('/'))
+    
 });
 
 
