@@ -1,0 +1,23 @@
+<h1>Create a New Booking</h1>
+<form action="/bookings" method="POST">
+  <!-- Input fields for booking details -->
+  <label for="dj_id">DJ:</label>
+  <input type="text" name="dj_id" required>
+
+  <label for="client_id">Client:</label>
+  <input type="text" name="client_id" required>
+
+  <label for="event_date">Event Date:</label>
+  <input type="datetime-local" name="event_date" required>
+
+  <label for="location">Location:</label>
+  <input type="text" name="location" required>
+
+  <label for="total_cost">Total Cost:</label>
+  <input type="number" name="total_cost" required>
+
+  <label for="notes">Notes:</label>
+  <textarea name="notes"></textarea>
+
+  <button type="submit">Create Booking</button>
+</form>

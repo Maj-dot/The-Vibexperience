@@ -15,9 +15,6 @@ router.get('/', (req, res) => {
 });
 
 
-// GET / (dj dashboard page)
-//router.get('/djDashboard', async (req, res) => {//
-  //res.render('home.ejs');
-//});
+
 
 module.exports = router;
