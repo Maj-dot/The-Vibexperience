@@ -3,12 +3,11 @@ const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
 
-//Create new booking
+
 router.get('/new', (req, res) => {
     res.render('bookings/new.ejs');
 });
 
-//Handle creation of new booking
 router.post('/', (req, res) => {
     const newBooking = {
         dj_id: req.body.dj_id,
@@ -20,8 +19,15 @@ router.post('/', (req, res) => {
         notes: req.body.notes
     };
 
-    newBooking.save(res.redirect('/'))
-    
+    newBooking.save(res.redirect('/'))   
+});
+
+router.get('/', (req, res) => {
+    Booking.find()
+        .populate('dj_id')
+        .populate('client_id')
+        .then(bookings => res.render('bookings/index', { bookings }))
+        .catch(err => res.status(400).json({ error: err.message }));
 });
 
 
