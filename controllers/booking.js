@@ -1,25 +1,33 @@
 const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
-const Booking = require('../models/Booking')
+const Booking = require('../models/Booking');
+const User = require('../models/user');
 
 
-router.get('/new', (req, res) => {
-    res.render('bookings/new.ejs');
+router.get('/new', async (req, res) => {
+    try {
+        const djs = await User.find({ role: 'DJ' });
+        const clients = await User.find({ role: 'Client' });
+
+        res.render('bookings/new', { djs, clients });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
 });
 
 router.post('/', async (req, res) => {
     try {
       
-      const dj = await User.findOne({ dj_name: req.body.dj_id });
+      const dj = await User.findOne({ dj_name: req.body.dj_name });
       if (!dj) throw new Error('DJ not found');
   
-      const client = await User.findOne({ username: req.body.client_id });
+      const client = await User.findOne({ username: req.body.client_name });
       if (!client) throw new Error('Client not found');
   
       const newBooking = new Booking({
-        dj_id: dj._id, 
-        client_id: client._id, 
+        dj_id: req.body.dj_id, 
+        client_id: req.body.client_id, 
         event_date: req.body.event_date,
         location: req.body.location,
         status: req.body.status,
