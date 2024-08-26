@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <h1>Edit Booking</h1>
+    
+    <form action="/bookings/<%= booking._id %>?_method=PUT" method="POST">
+      <label for="dj_id">DJ:</label>
+      <input type="text" name="dj_id" value="<%= booking.dj_id._id %>" required>
+    
+      <label for="client_id">Client:</label>
+      <input type="text" name="client_id" value="<%= booking.client_id._id %>" required>
+    
+      <label for="event_date">Event Date:</label>
+      <input type="datetime-local" name="event_date" value="<%= booking.event_date.toISOString().slice(0,16) %>" required>
+    
+      <label for="location">Location:</label>
+      <input type="text" name="location" value="<%= booking.location %>" required>
+    
+      <label for="total_hours">Total Hours:</label>
+      <input type="number" name="total_hours" value="<%= booking.total_hours %>" required>
+    
+      <label for="status">Status:</label>
+      <select name="status" required>
+        <option value="pending" <%= booking.status === 'pending' ? 'selected' : '' %>>Pending</option>
+        <option value="confirmed" <%= booking.status === 'confirmed' ? 'selected' : '' %>>Confirmed</option>
+        <option value="canceled" <%= booking.status === 'canceled' ? 'selected' : '' %>>Canceled</option>
+      </select>
+    
+      <label for="notes">Notes:</label>
+      <textarea name="notes"><%= booking.notes %></textarea>
+    
+      <button type="submit">Update Booking</button>
+    </form>
+    
+    <a href="/bookings/<%= booking._id %>">Cancel</a>
+    
+    <%- include('../partials/footer.ejs') %>
+    
+
+</body>
+</html>

@@ -6,9 +6,41 @@
     <title>Document</title>
 </head>
 <body>
-    <%- include('../partials/header.ejs') %>
-    <h1>Upcoming Bookings</h1>
+    <%- include('../partials/header') %>
 
-    <%- include('../partials/footer.ejs') %>
-</body>
+    <h1>All Bookings</h1>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>DJ Name</th>
+          <th>Client Name</th>
+          <th>Event Date</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(booking => { %>
+          <tr>
+            <td><%= booking.dj_id.name %></td>
+            <td><%= booking.client_id.name %></td>
+            <td><%= booking.event_date.toDateString() %></td>
+            <td><%= booking.location %></td>
+            <td><%= booking.status %></td>
+            <td>
+              <a href="/bookings/<%= booking._id %>">View</a> |
+              <a href="/bookings/<%= booking._id %>/edit">Edit</a> |
+              <form action="/bookings/<%= booking._id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    
+    <%- include('../partials/footer') %>
+    
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+<h1>Booking Details</h1>
+
+<p><strong>DJ Name:</strong> <%= booking.dj_id.name %></p>
+<p><strong>Client Name:</strong> <%= booking.client_id.name %></p>
+<p><strong>Event Date:</strong> <%= booking.event_date.toDateString() %></p>
+<p><strong>Location:</strong> <%= booking.location %></p>
+<p><strong>Total Hours:</strong> <%= booking.total_hours %> hours</p>
+<p><strong>Status:</strong> <%= booking.status %></p>
+<p><strong>Notes:</strong> <%= booking.notes %></p>
+
+<a href="/bookings/<%= booking._id %>/edit">Edit</a>
+<form action="/bookings/<%= booking._id %>?_method=DELETE" method="POST" style="display:inline;">
+  <button type="submit">Delete</button>
+</form>
+
+<a href="/bookings">Back to All Bookings</a>
+
+<%- include('../partials/footer') %>
+
+</body>
+</html>

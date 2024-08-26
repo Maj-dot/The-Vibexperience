@@ -14,16 +14,24 @@
     
     <label for ="dj_id">SELECT DJ:</label>
     <select name="dj_id" required>
+      <% if (djs && djs.length > 0) { %>
       <% djs.forEach(dj => { %>
         <option value="<%= dj._id %>"><%= dj.dj_name %></option>
      <% }); %>
+     <% } else { %>
+      <option value="">No Djs Available</option>
+    <% } %>
     </select>
 
     <label for="client_id">Select Client</label>
     <select name="client_id" required>
+      <% if (clients && clients.length > 0) { %>
       <% clients.forEach(client => { %>
        <option value="<%= client._id %>"><%= client.username %></option>   
     <% }); %>
+    <% } else { %>
+      <option value="">No Clients available</option>
+    <% } %>
     </select>
 
     <label for="event_date">Event Date:</label>
