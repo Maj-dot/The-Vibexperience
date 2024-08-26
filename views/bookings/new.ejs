@@ -4,14 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Create New Booking</title>
 </head>
 
 <body>
-
-
-
-
+  <%- include('../partials/header.ejs') %>
   <h1>Create a New Booking</h1>
   <form action="/bookings" method="POST">
     
@@ -35,6 +32,7 @@
 
     <button type="submit">Create Booking</button>
   </form>
+  <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>

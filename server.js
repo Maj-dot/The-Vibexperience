@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
-
-
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -13,6 +11,8 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+
+app.set('view engine', 'ejs');
 
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
