@@ -65,6 +65,23 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// Route to handle the update of a booking
+router.put('/:id', async (req, res) => {
+  try {
+    const booking = await Booking.findByIdAndUpdate(req.params.id, {
+      dj_id: req.body.dj_id,
+      client_id: req.body.client_id,
+      event_date: req.body.event_date,
+      location: req.body.location,
+      total_hours: req.body.total_hours,
+      status: req.body.status,
+      notes: req.body.notes
+    }, { new: true }); // { new: true } returns the updated document
+    res.redirect(`/bookings/${booking._id}`);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
 
 
 
