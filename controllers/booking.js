@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 router.get('/new', async (req, res) => {
     try {
-        const djs = await User.find({ role: 'DJ' });
+        const dj = await User.find({ role: 'DJ' });
         console.log('DJs', djs);
         const clients = await User.find({ role: 'Client' });
         console.log('Clients', clients);
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
       const dj = await User.findOne({ dj_name: req.body.dj_id });
       if (!dj) throw new Error('DJ not found');
   
-      const client = await User.findOne({ username: req.body.client_id });
+      const client = await User.findOne({ username: req.body.dj_id });
       if (!client) throw new Error('Client not found');
   
       const newBooking = new Booking({
@@ -91,7 +91,7 @@ router.put('/:id', async (req, res) => {
       total_hours: req.body.total_hours,
       status: req.body.status,
       notes: req.body.notes
-    }, { new: true }); // { new: true } returns the updated document
+    }, { new: true }); 
     res.redirect(`/bookings/${booking._id}`);
   } catch (err) {
     res.status(400).json({ error: err.message });
