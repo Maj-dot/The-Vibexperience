@@ -10,10 +10,7 @@ const User = require('../models/user');
 router.get('/new', async (req, res) => {
     try {
         const djs = await User.find({ role: 'dj' });
-        console.log('DJs', djs);
         const clients = await User.find({ role: 'client' });
-        console.log('Clients', clients);
-
         res.render('bookings/new', { djs, clients });
     } catch (err) {
         res.status(400).json({ error: err.message });
@@ -25,10 +22,8 @@ router.post('/', async (req, res) => {
     try {
       const djs = await User.findOne({ _id: req.body.dj_id });
       if (!djs) throw new Error('DJ not found');
-  
       const client = await User.findOne({ _id: req.body.client_id });
       if (!client) throw new Error('Client not found');
-  
       const newBooking = new Booking({
         dj_id: req.body.dj_id, 
         client_id: req.body.client_id, 
@@ -38,7 +33,6 @@ router.post('/', async (req, res) => {
         status: req.body.status,
         notes: req.body.notes
       });
-  
       const booking = await newBooking.save();
       res.redirect(`/bookings/${booking._id}`);
     } catch (err) {
@@ -46,16 +40,23 @@ router.post('/', async (req, res) => {
     }
   });
 
-router.get('/', async  (req, res) => {
- try {
-
-   const bookings = await Booking.find({}).populate('dj_id').populate('client_id')
-   console.log(bookings);
-         res.render('bookings/index.ejs', { bookings })
- }  catch(err) { 
-    res.status(400).json({ error: err.message });
-  }
-});
+  router.get('/', async (req, res) => {
+    try {
+      const userId = req.user._id;
+      const userRole = req.user.role;
+      let bookings;
+      if (userRole === 'dj') {
+        bookings = await Booking.find({ dj_id: userId }).populate('client_id');
+      } else if (userRole === 'client') {
+        bookings = await Booking.find({ client_id: userId }).populate('dj_id');
+      } else {
+        return res.status(403).send('Unauthorized');
+      } 
+      res.render('bookings/index.ejs', { bookings });
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  });
 
 router.get('/:id', async (req, res) => {
   try {
@@ -112,8 +113,6 @@ router.delete('/:id', async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-
-
 
 
 module.exports = router;
