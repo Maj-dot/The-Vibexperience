@@ -12,6 +12,10 @@
 <p><strong>Email:</strong> <%= user.email %></p>
 <p><strong>Bio:</strong> <%= user.bio %></p>
 <p><strong>Social Links:</strong> <%= user.social_links %></p>
+<% if (user.role === 'dj') { %>
+       <p><strong>Experience</strong> <%= user.experience %></p>
+       <p><strong>Check Out My Mixes</strong> <%= user.sampleMixes ? user.sampleMixes.join(', ') : '' %></p>     
+<% } %>
 
 <a href="/profile/edit">Edit Profile</a>
 
