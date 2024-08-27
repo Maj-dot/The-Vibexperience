@@ -13,10 +13,11 @@ body {
 nav, footer {
   background-color:lightblue;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 0 2vmin;
-  font-size: 2vh;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
   color: lightslategray;
 }
 
@@ -24,8 +25,12 @@ nav a {
   text-decoration: none;
   color: slategray;
   background-color: white;
-  padding: 1vmin;
-  border-radius: 1vmin;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  margin: 0.5rem;
+  min-width: 100px;
+  text-align: center;
+  flex-grow: 1;
   &:hover {
     color: gray;
     background-color: lightslategray;
@@ -36,6 +41,7 @@ nav a {
 nav span {
   font-size: 1.5vmin;
   color: lightslategray;
+  margin-right: 1rem;
 }
 
 main {
@@ -60,4 +66,14 @@ form * {
 button:hover {
   background-color: lightslategray;
   color: white;
+}
+
+@media (max-width: 768px) {
+  nav, footer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+ 
 }

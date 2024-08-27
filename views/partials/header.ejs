@@ -18,12 +18,16 @@
         <span>Welcome, <%= user.username %></span> 
         <a href="/bookings/index">View Bookings</a>&nbsp;&nbsp;
         <a href="/djDashboard">My Dashboard</a>&nbsp;&nbsp;
+        <a href="/profile/view">View My Profile</a>&nbsp;&nbsp;
+        <a href="/profile/edit">Edit Profile</a>&nbsp;&nbsp;
         <a href="/auth/logout">LOG OUT</a>&nbsp;&nbsp;
       <% } else if (user && user.role === 'client') { %> 
         <span>Welcome, <%= user.username %></span> 
         <a href="/bookings/index">View Bookings</a>&nbsp;&nbsp;
         <a href="/bookings/new">Request A DJ</a>&nbsp;&nbsp;
         <a href="/clientDashboard">My Dashboard</a>&nbsp;&nbsp;
+        <a href="/profile/view">View My Profile</a>&nbsp;&nbsp;
+        <a href="/profile/edit">Edit Profile</a>&nbsp;&nbsp;
         <a href="/auth/logout">LOG OUT</a>&nbsp;&nbsp;
       <% } else { %>  
         <a href="/auth/sign-up">SIGN UP</a>

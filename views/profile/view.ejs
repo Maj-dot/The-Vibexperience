@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+<h1><%= user.username %>'s Profile</h1>
+
+<p><strong>Email:</strong> <%= user.email %></p>
+<p><strong>Bio:</strong> <%= user.bio %></p>
+<p><strong>Social Links:</strong> <%= user.social_links %></p>
+
+<a href="/profile/edit">Edit Profile</a>
+
+<%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

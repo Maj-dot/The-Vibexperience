@@ -22,9 +22,9 @@ router.post('/sign-up', async (req, res) => {
     req.session.user = { _id: user._id };
     req.session.save();
     if (user.role === 'dj') {
-      return res.redirect('djDashboard/home');
+      return res.render('djDashboard/home.ejs');
     } else if (user.role === 'client') {
-      return res.redirect('clientDashboard/home')
+      return res.render('clientDashboard/home.ejs')
     }
   } catch (err) {
     console.log(err);

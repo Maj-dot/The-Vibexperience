@@ -9,7 +9,7 @@ const User = require('../models/user');
 
 router.get('/new', async (req, res) => {
     try {
-        const dj = await User.find({ role: 'DJ' });
+        const djs = await User.find({ role: 'DJ' });
         console.log('DJs', djs);
         const clients = await User.find({ role: 'Client' });
         console.log('Clients', clients);
@@ -22,7 +22,7 @@ router.get('/new', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-      const dj = await User.findOne({ dj_name: req.body.dj_id });
+      const djs = await User.findOne({ dj_name: req.body.dj_id });
       if (!dj) throw new Error('DJ not found');
   
       const client = await User.findOne({ username: req.body.dj_id });
