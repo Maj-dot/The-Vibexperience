@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
+const mongoose = require('mongoose');
 const Booking = require('../models/Booking');
 const User = require('../models/user');
+
 
 
 router.get('/new', async (req, res) => {
     try {
         const djs = await User.find({ role: 'DJ' });
-        console.log('DJs:, djs');
+        console.log('DJs', djs);
         const clients = await User.find({ role: 'Client' });
         console.log('Clients', clients);
 
@@ -99,7 +101,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     await Booking.findByIdAndDelete(req.params.id);
-    res.redirect('/bookings');
+    res.redirect('/index');
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

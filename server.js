@@ -37,12 +37,15 @@ app.use(addUserToReqAndLocals);
 
 // Routes/Controllers
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
-const booking = require('./controllers/booking')
+const home = require('./controllers/home');
+const booking = require('./controllers/booking');
 
 // '/auth' is a "starts with" path that all paths
 // within authCtrl are appended to
 app.use('/auth', require('./controllers/auth'));
 app.use('/', require('./controllers/home'));
+app.use('/djDashboard', require('./controllers/home'));
+app.use('/clientDashboard', require('./controllers/home'));
 app.use('/bookings', require('./controllers/booking'));
 
 // If you wanted to protect ALL routes 

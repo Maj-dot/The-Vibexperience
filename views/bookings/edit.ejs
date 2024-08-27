@@ -12,10 +12,10 @@
     
     <form action="/bookings/<%= booking._id %>?_method=PUT" method="POST">
       <label for="dj_id">DJ:</label>
-      <input type="text" name="dj_id" value="<%= booking.dj_id._id %>" required>
+      <input type="text" name="dj_id" value="<%= booking.dj_id %>" required>
     
       <label for="client_id">Client:</label>
-      <input type="text" name="client_id" value="<%= booking.client_id._id %>" required>
+      <input type="text" name="client_id" value="<%= booking.client_id %>" required>
     
       <label for="event_date">Event Date:</label>
       <input type="datetime-local" name="event_date" value="<%= booking.event_date.toISOString().slice(0,16) %>" required>
