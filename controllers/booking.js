@@ -9,9 +9,9 @@ const User = require('../models/user');
 
 router.get('/new', async (req, res) => {
     try {
-        const djs = await User.find({ role: 'DJ' });
+        const djs = await User.find({ role: 'dj' });
         console.log('DJs', djs);
-        const clients = await User.find({ role: 'Client' });
+        const clients = await User.find({ role: 'client' });
         console.log('Clients', clients);
 
         res.render('bookings/new', { djs, clients });
@@ -21,11 +21,12 @@ router.get('/new', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  console.log(req.body);
     try {
-      const djs = await User.findOne({ dj_name: req.body.dj_id });
-      if (!dj) throw new Error('DJ not found');
+      const djs = await User.findOne({ _id: req.body.dj_id });
+      if (!djs) throw new Error('DJ not found');
   
-      const client = await User.findOne({ username: req.body.dj_id });
+      const client = await User.findOne({ _id: req.body.client_id });
       if (!client) throw new Error('Client not found');
   
       const newBooking = new Booking({
@@ -45,12 +46,15 @@ router.post('/', async (req, res) => {
     }
   });
 
-router.get('/index', (req, res) => {
-    Booking.find()
-        .populate('dj_id')
-        .populate('client_id')
-        .then(bookings => res.render('bookings/index.ejs', { bookings }))
-        .catch(err => res.status(400).json({ error: err.message }));
+router.get('/', async  (req, res) => {
+ try {
+
+   const bookings = await Booking.find({}).populate('dj_id').populate('client_id')
+   console.log(bookings);
+         res.render('bookings/index.ejs', { bookings })
+ }  catch(err) { 
+    res.status(400).json({ error: err.message });
+  }
 });
 
 router.get('/:id', async (req, res) => {
@@ -69,13 +73,15 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/edit', async (req, res) => {
   try {
-    const booking = await Booking.findById(req.params.id)
-      .populate('dj_id')
-      .populate('client_id');
+    const djs = await User.find({ role: 'dj' });
+        console.log('DJs', djs);
+        const clients = await User.find({ role: 'client' });
+        console.log('Clients', clients);
+    const booking = await Booking.findById(req.params.id).populate('dj_id').populate('client_id');
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found' });
     }
-    res.render('bookings/edit', { booking });
+    res.render('bookings/edit', { booking, clients, djs });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -101,7 +107,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     await Booking.findByIdAndDelete(req.params.id);
-    res.redirect('/index');
+    res.redirect('/');
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

@@ -11,11 +11,29 @@
     <h1>Edit Booking</h1>
     
     <form action="/bookings/<%= booking._id %>?_method=PUT" method="POST">
-      <label for="dj_id">DJ:</label>
-      <input type="text" name="dj_id" value="<%= booking.dj_id %>" required>
+      <label for ="dj_id">SELECT DJ:</label>
+      <select name="dj_id" required>
+        <option value="<%= booking.dj_id._id %>"><%= booking.dj_id.username %></option>
+        <% if (djs && djs.length > 0) { %>
+        <% djs.forEach(dj => { %>
+          <option value="<%= dj._id %>"><%= dj.username %></option>
+       <% }); %>
+       <% } else { %>
+        <option value="">No Djs Available</option>
+      <% } %>
+      </select>
     
-      <label for="client_id">Client:</label>
-      <input type="text" name="client_id" value="<%= booking.client_id %>" required>
+      <label for="client_id">Select Client</label>
+    <select name="client_id" required>
+      <option value="<%= booking.client_id._id %>"><%= booking.client_id.username %></option>   
+      <% if (clients && clients.length > 0) { %>
+      <% clients.forEach(client => { %>
+       <option value="<%= client._id %>"><%= client.username %></option>   
+    <% }); %>
+    <% } else { %>
+      <option value="">No Clients available</option>
+    <% } %>
+    </select>
     
       <label for="event_date">Event Date:</label>
       <input type="datetime-local" name="event_date" value="<%= booking.event_date.toISOString().slice(0,16) %>" required>

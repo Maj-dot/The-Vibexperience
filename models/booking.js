@@ -28,6 +28,10 @@ const bookingSchema = new mongoose.Schema({
     notes: {
         type: String,
     },
+    total_hours: {
+        type: String,
+        required: true,
+    },
     created_at: {
         type: Date,
         default: Date.now

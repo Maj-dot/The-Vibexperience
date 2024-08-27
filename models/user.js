@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
+  },
+  bio: {
+    type: String,  
+  },
+  social_links: {
+  type: String,
   }
 });
 
