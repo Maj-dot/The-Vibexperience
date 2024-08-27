@@ -48,7 +48,9 @@ router.post('/login', async (req, res) => {
         email: user.email,
         bio: user.bio,
         social_links: user.social_links,
-        role: user.role
+        role: user.role,
+        experience: user.experience,
+        sampleMixes: user.sampleMixes,
       };
       req.session.save();
       // Perhaps update to some other functionality
