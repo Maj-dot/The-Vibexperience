@@ -42,7 +42,14 @@ router.post('/login', async (req, res) => {
     }
     console.log(user, "In Auth");
     if (bcrypt.compareSync(req.body.password, user.password)) {
-      req.session.user = { _id: user._id, username: user.username, role: user.role };
+      req.session.user = { 
+        _id: user._id, 
+        username: user.username, 
+        email: user.email,
+        bio: user.bio,
+        social_links: user.social_links,
+        role: user.role
+      };
       req.session.save();
       // Perhaps update to some other functionality
       return res.redirect('/');

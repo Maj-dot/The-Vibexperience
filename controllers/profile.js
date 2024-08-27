@@ -9,7 +9,6 @@ router.get('/view', ensureAuthenticated, (req, res) => {
 });
 
 router.post('/edit', ensureAuthenticated, [
-  // Validation logic here
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
