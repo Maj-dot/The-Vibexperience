@@ -40,6 +40,7 @@ const ensureLoggedIn = require('./middleware/ensureLoggedIn');
 const home = require('./controllers/home');
 const booking = require('./controllers/booking');
 const profile = require('./controllers/profile');
+const djs = require('./controllers/djs');
 
 // '/auth' is a "starts with" path that all paths
 // within authCtrl are appended to
@@ -49,6 +50,7 @@ app.use('/djDashboard', require('./controllers/home'));
 app.use('/clientDashboard', require('./controllers/home'));
 app.use('/profile', require('./controllers/profile'));
 app.use('/bookings', require('./controllers/booking'));
+app.use('/djs', require('./controllers/djs'));
 
 // If you wanted to protect ALL routes 
 // app.use('/todos', ensureLoggedIn, require('./controllers/todos'));

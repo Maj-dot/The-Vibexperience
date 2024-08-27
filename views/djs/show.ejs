@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= dj.username %>'s Profile</title>
+</head>
+<body>
+  <h1><%= dj.username %>'s Profile</h1>
+  <p><strong>Experience:</strong> <%= dj.experience %></p>
+  <p><strong>Sample Mixes:</strong></p>
+  <ul>
+    <% if (dj.sampleMixes && dj.sampleMixes.length > 0) { %>
+      <% dj.sampleMixes.forEach(function(mix, index) { %>
+        <li><a href="<%= mix %>" target="_blank">Mix <%= index + 1 %></a></li>
+      <% }) %>
+    <% } else { %>
+      <li>No mixes available</li>
+    <% } %>
+  </ul>
+  <p><strong>Reviews:</strong></p>
+  <ul>
+    <% if (dj.reviews && dj.reviews.length > 0) { %>
+      <% dj.reviews.forEach(function(review) { %>
+        <li><%= review.content %> - <strong>by <%= review.author.username %></strong></li>
+      <% }) %>
+    <% } else { %>
+      <li>No reviews yet</li>
+    <% } %>
+  </ul>
+</body>
+</html>

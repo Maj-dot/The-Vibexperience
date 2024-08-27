@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All DJs</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %> 
+  <h1>Available DJs</h1>
+  <ul>
+    <% djs.forEach(function(dj) { %>
+      <li>
+        <h2><%= dj.username %></h2>
+        <p><strong>Experience:</strong> <%= dj.experience %></p>
+        <a href="/djs/<%= dj._id %>">View Profile</a>
+      </li>
+    <% }) %>
+  </ul>
+  <%- include('../partials/footer.ejs') %> 
+</body>
+</html>
