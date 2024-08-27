@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 const mongoose = require('mongoose');
-const Booking = require('../models/Booking');
+const Booking = require('../models/booking');
 const User = require('../models/user');
 
 
