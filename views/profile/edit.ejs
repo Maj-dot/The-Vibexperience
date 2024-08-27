@@ -28,6 +28,20 @@
     <input type="text" id="social_links" name="social_links" value="<%= user.social_links %>">
   </div>
 
+  <% if (user.role === 'dj') { %>
+    <div>
+        <label for="experience">Experience:</label>
+        <textarea id="experience" name="experience"><%= user.experience %></textarea>
+    </div>
+
+    <div>
+        <label for="sampleMixes">Sample Mixes (comma-separated URLs):</label>
+        <input type="text" id="sampleMixes" name="sampleMixes" value="<%= user.sampleMixes ? user.sampleMixes.join(', ') : '' %>">
+    </div>
+<% } %>
+
+<button type="submit">Save Changes</button>
+
   <button type="submit">Save Changes</button>
 </form>
 

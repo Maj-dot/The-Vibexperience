@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
+const isDJ = require('../middleware/isDJ');
 const mongoose = require('mongoose');
 
 router.get('/', (req, res) => {

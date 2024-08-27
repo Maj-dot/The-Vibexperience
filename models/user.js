@@ -24,7 +24,12 @@ const userSchema = new mongoose.Schema({
   },
   social_links: {
   type: String,
-  }
+  },
+  experience: {
+    type:String,
+  },
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, re: 'Review'}],
+  sampleMixes:[String],
 });
 
 const User = mongoose.model("User", userSchema);

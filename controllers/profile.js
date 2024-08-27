@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ensureAuthenticated = require('../middleware/ensureLoggedIn');
+const isDJ = require('../middleware/isDJ');
 const { validationResult } = require('express-validator');
 const User = require('../models/user'); 
 
@@ -47,19 +48,31 @@ router.get('/edit', (req, res) => {
 router.post('/edit', async (req, res) => {
   try {
     const { username, email, bio, social_links } = req.body;
-    const userId = req.session.user._id;
-
-    await User.findByIdAndUpdate(userId, {
+    const userId = req.session.user;
+    let updateData = {
       username,
       email,
       bio,
       social_links,
-    });
+    };
+
+    if (req.session.user.role === 'dj') {
+    const { experience, sampleMixes} = req.body;
+    updateData.experience = experience;
+    updateData.sampleMixes = sampleMixes.split(',').map(mix => mix.trim());
+    }
+
+    await User.findByIdAndUpdate(userId, updateData);
 
     req.session.user.username = username;
     req.session.user.email = email;
     req.session.user.bio = bio;
     req.session.user.social_links = social_links;
+
+    if (req.session.user.role === 'dj') {
+      req.session.user.experience = updateData.experience;
+      req.session.user.sampleMixes = updateData.sampleMixes;
+    }
 
     res.redirect('/profile/edit');
   } catch (err) {
