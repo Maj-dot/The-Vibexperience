@@ -2,7 +2,8 @@
 
 ## # The Vibexperience
 
-<img src="Logo.png" alt="The Vibexperience Logo">
+![Logo](https://github.com/user-attachments/assets/13713694-2bc1-48e2-bb76-00cea5c27e14)
+
 
 ## Overview
 
