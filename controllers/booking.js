@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
       if (!client) throw new Error('Client not found');
       const newBooking = new Booking({
         dj_id: req.body.dj_id, 
-        client_id: req.body.client_id, 
+        
         event_date: req.body.event_date,
         total_hours: req.body.total_hours,
         location: req.body.location,
