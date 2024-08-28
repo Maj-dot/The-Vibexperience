@@ -4,21 +4,32 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
 }
 
 a {
-  color: #FF007F; /* Vibrant Pink */
+  color: #FF007F; 
   text-decoration: none;
 }
 
 a:hover {
-  color: #1DB954; /* Spotify Green */
+  color: #1DB954; 
 }
 
 button {
   background-color: #FF007F;
   color: white;
-  border: none;
+  border: 3mm ridge rgba(50, 90, 220, 0.981);
   padding: 10px 20px;
   font-size: 1em;
   border-radius: 5px;
@@ -30,22 +41,112 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.button-group {
+  display: flex; 
+  justify-content: space-between; 
+  gap: 10px; 
+}
+
+.button-group button {
+  flex: 1; 
+}
+
+
+h1, h2, h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #FFFFFF; 
+  text-shadow: 0 0 10px #FF007F, 0 0 20px #00C9FF; 
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.75em;
+}
+
+p {
+  color: #B3B3B3; 
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
 nav {
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   background-color: rgba(25, 20, 20, 0.95);
   padding: 15px 0;
   z-index: 1000;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 nav a {
   color: #FF007F;
   text-decoration: none;
-  margin-right: 20px;
+  margin: 0 15px; 
 }
+
 
 nav a:hover {
   color: #1DB954;
   text-decoration: underline;
+}
+
+section {
+  padding: 60px 20px;
+  margin: 20px 0;
+  border-bottom: 1px solid #333;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+input, textarea {
+  background-color: #2A2A2A;
+  color: #FFFFFF;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input:focus, textarea:focus {
+  border-color: #FF007F;
+  outline: none;
+}
+
+.testimonial-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+}
+
+.testimonial {
+  flex: 1 1 calc(33.333% - 40px); 
+  background-color: #2A2A2A;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+  background-color: #191414;
+  color: #B3B3B3;
+  padding: 20px 0;
+  text-align: center;
 }
