@@ -9,7 +9,49 @@
     <%- include('../partials/header.ejs') %>
 
     <h1>Welcome <%= user.username %></h1>
+    
+    <!-- views/clientDashboard/home.ejs -->
+<h2>Your Reviews</h2>
+<ul>
+  <% if (user.reviews.length > 0) { %>
+    <% user.reviews.forEach(function(review) { %>
+      <li>
+        <strong><%= review.author.username %></strong>: <%= review.content %> - <%= review.rating %> stars
+        <a href="/djs/<%= review.dj %>/reviews/<%= review._id %>/edit">Edit</a>
+        <form action="/djs/<%= review.dj %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li>No reviews yet</li>
+  <% } %>
+</ul>
 
+<h3>Leave a Review</h3>
+<form action="/djs/<%= user._id %>/reviews" method="POST">
+    <label for="dj_id">SELECT DJ:</label>
+    <select name="dj_id" required>
+      <option value="<%=review.dj_id._id %>"><%= review.dj_id.username %></option>
+      <% if (djs && djs.length > 0) { %>
+        <% djs.forEach(dj => { %>
+          <option value="<%= dj._id %>"><%= dj.username %></option>
+        <% }); %>
+      <% } else { %>
+        <option value="">No DJs Available</option>
+      <% } %>
+    </select>
+    <textarea name="content" required></textarea>
+    <label for="rating">Rating:</label>
+    <select name="rating" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <button type="submit">Submit Review</button>
+</form>
 
 
 <%- include('../partials/footer.ejs') %>

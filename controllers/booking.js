@@ -104,7 +104,6 @@ router.put('/:id', async (req, res) => {
       booking.notes = req.body.notes;
       booking.price = req.body.price; 
     } else if (user.role === 'client') {
-      // If Client, only allow updating specific fields
       booking.location = req.body.location;
       booking.notes = req.body.notes;
     } else {

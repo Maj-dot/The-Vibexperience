@@ -15,11 +15,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const dj = await User.findById(req.params.id).populate('reviews');
-    const reviews = await Review.find({ dj: req.params.id }).populate('author');
     if (!dj || dj.role !== 'dj') {
       return res.status(404).send('DJ not found');
     }
-    res.render('djs/show', { dj, reviews });
+    res.render('djs/show', { dj, });
   } catch (err) {
     res.status(500).send('Error retrieving DJ profile');
   }

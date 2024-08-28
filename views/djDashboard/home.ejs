@@ -8,9 +8,16 @@
 <body>
     <%- include('../partials/header.ejs') %>  
    <h1>Welcome <%= user.username %></h1>
-    
-    
-
+<h2>Your Reviews</h2>
+<ul>
+  <% if (user.reviews.length > 0) { %>
+    <% user.reviews.forEach(function(review) { %>
+      <li><strong><%= review.author.username %></strong>: <%= review.content %> - <%= review.rating %> stars</li>
+    <% }) %>
+  <% } else { %>
+    <li>No reviews yet</li>
+  <% } %>
+</ul>
     
     <%- include('../partials/footer.ejs') %> 
 </body>
