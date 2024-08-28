@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
   experience: {
     type:String,
   },
+  notifications: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Notification'
+  }],
   reviews: [{ type: mongoose.Schema.Types.ObjectId, re: 'Review'}],
   sampleMixes:[String],
 });

@@ -41,16 +41,18 @@ const home = require('./controllers/home');
 const booking = require('./controllers/booking');
 const profile = require('./controllers/profile');
 const djs = require('./controllers/djs');
+const djDashboard = require('./controllers/djDashboard');
+const clientDashboard = require('./controllers/clientDashboard');
+
 
 // '/auth' is a "starts with" path that all paths
 // within authCtrl are appended to
 app.use('/auth', require('./controllers/auth'));
 app.use('/', require('./controllers/home'));
-app.use('/djDashboard', require('./controllers/home'));
-app.use('/clientDashboard', require('./controllers/home'));
+app.use('/djDashboard', require('./controllers/djDashboard'));
+app.use('/clientDashboard', require('./controllers/clientDashboard'));
 app.use('/profile', require('./controllers/profile'));
 app.use('/bookings', require('./controllers/booking'));
-app.use('/djs', require('./controllers/djs'));
 
 // If you wanted to protect ALL routes 
 // app.use('/todos', ensureLoggedIn, require('./controllers/todos'));

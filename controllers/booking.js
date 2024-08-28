@@ -76,9 +76,7 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
     const djs = await User.find({ role: 'dj' });
-        console.log('DJs', djs);
         const clients = await User.find({ role: 'client' });
-        console.log('Clients', clients);
     const booking = await Booking.findById(req.params.id).populate('dj_id').populate('client_id');
     if (!booking) {
       return res.status(404).json({ error: 'Booking not found' });
