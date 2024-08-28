@@ -91,6 +91,14 @@ router.get('/:id/edit', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
+
+    const userId = req.session.user._id;
+    const user = await User.findById(userId);
+
+    if (user.role !== 'dj') {
+      return res.status(403).json({ error: "Only DJS can update the status"})
+    }
+
     const booking = await Booking.findByIdAndUpdate(req.params.id, {
       dj_id: req.body.dj_id,
       client_id: req.body.client_id,
