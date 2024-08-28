@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+  <%- include('../partials/header.ejs') %>
     <h1>Edit Profile</h1>
 <form action="/profile/edit" method="POST">
   <div>
@@ -40,10 +42,8 @@
     </div>
 <% } %>
 
-
-
   <button type="submit">Save Changes</button>
 </form>
-
+<%- include('../partials/footer.ejs') %>
 </body>
 </html>

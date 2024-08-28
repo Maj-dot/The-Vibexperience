@@ -19,12 +19,17 @@ router.post('/sign-up', async (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 6);
     const user = await User.create(req.body);
     // "remember" only the user's _id in the session object
-    req.session.user = { _id: user._id };
+    req.session.user = { 
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    };
     req.session.save();
     if (user.role === 'dj') {
-      return res.render('djDashboard/home.ejs');
+      return res.render('djDashboard/home.ejs', {user: req.session.user});
     } else if (user.role === 'client') {
-      return res.render('clientDashboard/home.ejs')
+      return res.render('clientDashboard/home.ejs', {user: req.session.user});
     }
   } catch (err) {
     console.log(err);
