@@ -18,7 +18,7 @@
 - **Database:** MongoDB with Mongoose ORM
 - **Templating Engine:** EJS
 - **Version Control:** Git & GitHub
-- **Hosting:** Heroku
+- **Hosting:** Heroku 
 
 ## References
 
