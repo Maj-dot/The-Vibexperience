@@ -17,6 +17,7 @@
 <p><strong>Total Hours:</strong> <%= booking.total_hours %> hours</p>
 <p><strong>Status:</strong> <%= booking.status %></p>
 <p><strong>Notes:</strong> <%= booking.notes %></p>
+<p><strong>Price:</strong> $<%= booking.price %></p>
 
 <a href="/bookings/<%= booking._id %>/edit">Edit</a>
 <form action="/bookings/<%= booking._id %>?_method=DELETE" method="POST" style="display:inline;">

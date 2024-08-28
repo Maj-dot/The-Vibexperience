@@ -91,23 +91,30 @@ router.get('/:id/edit', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-
     const userId = req.session.user._id;
     const user = await User.findById(userId);
 
-    if (user.role !== 'dj') {
-      return res.status(403).json({ error: "Only DJS can update the status"})
+    const booking = await Booking.findById(req.params.id);
+
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
     }
 
-    const booking = await Booking.findByIdAndUpdate(req.params.id, {
-      dj_id: req.body.dj_id,
-      client_id: req.body.client_id,
-      event_date: req.body.event_date,
-      location: req.body.location,
-      total_hours: req.body.total_hours,
-      status: req.body.status,
-      notes: req.body.notes
-    }, { new: true }); 
+    if (user.role === 'dj') {
+      booking.dj_id = req.body.dj_id;
+      booking.status = req.body.status;
+      booking.notes = req.body.notes;
+      booking.price = req.body.price; 
+    } else if (user.role === 'client') {
+      // If Client, only allow updating specific fields
+      booking.location = req.body.location;
+      booking.notes = req.body.notes;
+    } else {
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+
+    await booking.save();
+
     res.redirect(`/bookings/${booking._id}`);
   } catch (err) {
     res.status(400).json({ error: err.message });
