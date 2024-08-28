@@ -2,7 +2,7 @@
 
 ## # The Vibexperience
 
- ![The Vibexperience Logo](../images/TheVibexperience.png)
+ ![The Vibexperience Logo](./images/TheVibexperienceLogo.png)
 
 ## Overview
 
