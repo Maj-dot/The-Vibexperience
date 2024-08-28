@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 router.get('/', (req, res) => {
   const user = req.session.user
   if (user?.role==='dj') {
-    res.render('djDashboard/home.ejs');
+    res.redirect('/djDashboard');
   } else if (user?.role==='client') {
-    res.render('clientDashboard/home.ejs');
+    res.redirect('/clientDashboard');
   } else {
     res.render('home.ejs')
   }

@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const dj = await User.findById(req.params.id).populate('reviews');
+    console.log(dj)
     if (!dj || dj.role !== 'dj') {
       return res.status(404).send('DJ not found');
     }

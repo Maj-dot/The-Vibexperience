@@ -10,15 +10,15 @@
 
     <h1>Welcome <%= user.username %></h1>
     
-    <!-- views/clientDashboard/home.ejs -->
+    
 <h2>Your Reviews</h2>
 <ul>
-  <% if (user.reviews.length > 0) { %>
-    <% user.reviews.forEach(function(review) { %>
+  <% if (reviews.length > 0) { %>
+    <% reviews.forEach(function(review) { %>
       <li>
         <strong><%= review.author.username %></strong>: <%= review.content %> - <%= review.rating %> stars
-        <a href="/djs/<%= review.dj %>/reviews/<%= review._id %>/edit">Edit</a>
-        <form action="/djs/<%= review.dj %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+        <a href="/reviews/<%= review._id %>/edit">Edit</a>
+        <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST">
           <button type="submit">Delete</button>
         </form>
       </li>
@@ -29,11 +29,10 @@
 </ul>
 
 <h3>Leave a Review</h3>
-<form action="/djs/<%= user._id %>/reviews" method="POST">
+<form action="/reviews" method="POST">
     <label for="dj_id">SELECT DJ:</label>
     <select name="dj_id" required>
-      <option value="<%=review.dj_id._id %>"><%= review.dj_id.username %></option>
-      <% if (djs && djs.length > 0) { %>
+      <% if ( djs.length > 0) { %>
         <% djs.forEach(dj => { %>
           <option value="<%= dj._id %>"><%= dj.username %></option>
         <% }); %>

@@ -4,19 +4,21 @@ const Review = require('../models/review');
 const User = require('../models/user');
 const  ensureLoggedIn  = require('../middleware/ensureLoggedIn');
 
-router.post('/djs/:id/reviews', ensureLoggedIn, async (req, res) => {
+router.post('/', ensureLoggedIn, async (req, res) => {
   try {
       const { content, rating, dj_id } = req.body;
-      const review = new Review({
+      const reviewContent = {
           content,
           rating,
           author: req.session.user._id,
           dj: dj_id,
-      });
-      await review.save();
+      };
+      
+      const review = await Review.create(reviewContent);
 
       const dj = await User.findById(dj_id);
-      dj.reviews.push(review);
+      dj.reviews.push(review._id);
+      console.log(dj);
       await dj.save();
 
       res.redirect(`/djs/${dj_id}`);
@@ -26,7 +28,7 @@ router.post('/djs/:id/reviews', ensureLoggedIn, async (req, res) => {
   }
 });
 
-router.get('/djs/:id/reviews/:reviewId/edit', ensureLoggedIn, async (req, res) => {
+router.get('/:reviewId/edit', ensureLoggedIn, async (req, res) => {
   try {
     const review = await Review.findById(req.params.reviewId);
     if (!review) {
@@ -38,20 +40,20 @@ router.get('/djs/:id/reviews/:reviewId/edit', ensureLoggedIn, async (req, res) =
   }
 });
 
-router.put('/djs/:id/reviews/:reviewId', ensureLoggedIn, async (req, res) => {
+router.put('/:reviewId', ensureLoggedIn, async (req, res) => {
   try {
     const { content, rating } = req.body;
     const review = await Review.findByIdAndUpdate(req.params.reviewId, { content, rating }, { new: true });
-    res.redirect(`/djs/${req.params.id}`);
+    res.redirect(`/clientDashboard`);
   } catch (err) {
     res.status(500).send('Server Error');
   }
 });
 
-router.delete('/djs/:id/reviews/:reviewId', ensureLoggedIn, async (req, res) => {
+router.delete('/:reviewId', ensureLoggedIn, async (req, res) => {
   try {
     await Review.findByIdAndDelete(req.params.reviewId);
-    res.redirect(`/djs/${req.params.id}`);
+    res.redirect(`/clientDashboard`);
   } catch (err) {
     res.status(500).send('Server Error');
   }

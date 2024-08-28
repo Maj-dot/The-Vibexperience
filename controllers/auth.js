@@ -27,9 +27,9 @@ router.post('/sign-up', async (req, res) => {
     };
     req.session.save();
     if (user.role === 'dj') {
-      return res.render('djDashboard/home.ejs', {user: req.session.user});
+      return res.redirect('/djDashboard');
     } else if (user.role === 'client') {
-      return res.render('clientDashboard/home.ejs', {user: req.session.user});
+      return res.redirect('/clientDashboard');
     }
   } catch (err) {
     console.log(err);
