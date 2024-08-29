@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  background: linear-gradient(135deg, #191414 0%, #FF007F 100%);
+  background: linear-gradient(135deg, #191414 0%, #A30052 100%);
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -32,7 +32,7 @@ body {
 }
 
 footer {
-  background: linear-gradient(135deg, #191414 0%, #FF007F 100%);
+  background: linear-gradient(135deg, #191414 0%, #A30052 100%);
   color: #B3B3B3;
   padding: 40px 0;
   text-align: center;
