@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css">
   <title>Update Review</title>
 </head>
 <body>
-  
-
+  <%- include('../partials/header.ejs') %>
 <h3>Update Your Review</h3>
 <form action="/reviews/<%=review._id%>?_method=PUT" method="POST">
     <label for="dj_id">SELECT DJ:</label>
-     
     <textarea name="content" required><%=review.content%></textarea>
     <label for="rating">Rating:</label>
     <select name="rating" required>
@@ -24,6 +23,6 @@
     </select>
     <button type="submit">Submit Review</button>
 </form>
-
+<%- include('../partials/footer.ejs') %>
 </body>
 </html>

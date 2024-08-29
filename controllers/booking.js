@@ -9,30 +9,26 @@ const User = require('../models/user');
 router.get('/new', async (req, res) => {
   try {
     const djs = await User.find({ role: 'dj' });
-    const clients = await User.find({ role: 'client' });
-    res.render('bookings/new', { djs, clients });
+    res.render('bookings/new', { djs });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
 router.post('/', async (req, res) => {
-  console.log(req.body);
   try {
-    const djs = await User.findOne({ _id: req.body.dj_id });
-    if (!djs) throw new Error('DJ not found');
-    const client = await User.findOne({ _id: req.body.client_id });
-    if (!client) throw new Error('Client not found');
+    const clientId = req.user._id;
+    const { dj_id, event_date, location, total_hours, notes } = req.body;
     const newBooking = new Booking({
-      dj_id: req.body.dj_id,
-      event_date: req.body.event_date,
-      total_hours: req.body.total_hours,
-      location: req.body.location,
-      status: req.body.status,
-      notes: req.body.notes
+      dj_id,
+      client_id: clientId,
+      event_date,
+      location,
+      total_hours,
+      notes,
     });
-    const booking = await newBooking.save();
-    res.redirect(`/bookings/${booking._id}`);
+    await newBooking.save();
+    res.redirect('/bookings'); 
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

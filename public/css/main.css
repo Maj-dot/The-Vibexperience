@@ -1,5 +1,6 @@
 html,
 body {
+  background: linear-gradient(135deg, #191414 0%, #A30052 100%);
   height: 100%;
   margin: 0;
   padding: 0;
@@ -18,7 +19,6 @@ body {
 }
 
 * {
- 
   box-sizing: inherit;
 }
 
@@ -75,7 +75,6 @@ a:hover {
   text-shadow: 0 0 10px #FF007F, 0 0 20px #00C9FF, 0 0 30px #FF007F; 
 }
 
-
 h1,
 h2,
 h3 {
@@ -130,7 +129,7 @@ nav a:hover {
 }
 
 section {
-  background: linear-gradient(135deg, #191414 0%, #FF007F 100%);
+  background: linear-gradient(135deg, #191414 0%, #A30052  100%);
   padding: 60px 20px;
   margin: 20px 0;
   border-bottom: 1px solid #333;
@@ -140,6 +139,7 @@ section {
 }
 
 section:last-of-type {
+  background-color: #A30052;
   border-bottom: none;
 }
 
@@ -148,7 +148,7 @@ input,
 textarea {
   background-color: #2a2a2a78;
   color: #FFFFFF;
-  border: 1px solid #444;
+  border: 1px solid #A30052;
   padding: 10px;
   border-radius: 5px;
   width: 100%;
