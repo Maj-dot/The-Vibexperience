@@ -46,7 +46,6 @@ You can access the live version of the app here: [The Vibexperience on Heroku](h
 
 ## Future Improvements 
 
-<<<<<<< HEAD
 As The Vibexperience continues to evolve, we have identified several key features and enhancements that we plan to implement in future development phases. These improvements will enhance the platform's functionality, user experience, and overall service offerings. Below are the major areas we aim to focus on:
 
 1. **Alerts & Notifications**
