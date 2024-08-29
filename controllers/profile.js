@@ -29,7 +29,6 @@ router.post('/edit', ensureAuthenticated, async (req, res) => {
       email,
       bio,
       social_links,
-      reviews,
     };
     if (req.session.user.role === 'dj') {
       const { experience, sampleMixes } = req.body;
@@ -41,7 +40,7 @@ router.post('/edit', ensureAuthenticated, async (req, res) => {
     req.session.user.email = email;
     req.session.user.bio = bio;
     req.session.user.social_links = social_links;
-    req.session.user.reviews = reviews;
+    
     if (req.session.user.role === 'dj') {
       req.session.user.experience = updateData.experience;
       req.session.user.sampleMixes = updateData.sampleMixes;
