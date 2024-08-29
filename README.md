@@ -2,6 +2,7 @@
 
 ## # The Vibexperience
 
+![TheVibexperienceLogo](https://github.com/user-attachments/assets/b33bb272-f19f-4237-88bd-2967066be58a)
 
 
 
