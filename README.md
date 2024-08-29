@@ -76,6 +76,4 @@ As The Vibexperience continues to evolve, we have identified several key feature
 **Admin Dashboard**: An admin dashboard will be developed for managing user accounts, bookings, and platform-wide analytics.
 **Dispute Resolution**: An admin-controlled support system will be introduced to resolve disputes between clients and DJs.
 **Performance Monitoring**: Platform analytics will be available to admins to monitor the service's performance and growth.
-=======
-1. **Alert System
->>>>>>> f17da27385d02231c47de389077f1a1706ac93eb
+
