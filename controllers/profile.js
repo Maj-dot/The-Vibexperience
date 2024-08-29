@@ -3,12 +3,11 @@ const router = express.Router();
 const ensureAuthenticated = require('../middleware/ensureLoggedIn');
 const isDJ = require('../middleware/isDJ');
 const { validationResult } = require('express-validator');
-const User = require('../models/user'); 
+const User = require('../models/user');
 
 router.get('/view', ensureAuthenticated, (req, res) => {
   res.render('profile/view', { user: req.session.user });
 });
-
 
 router.get('/edit', ensureAuthenticated, (req, res) => {
   if (!req.session.user) {

@@ -1,13 +1,10 @@
 # The-Vibexperience
 
-<<<<<<< HEAD
-=======
 ## # The Vibexperience
 
 
 
 
->>>>>>> f17da27385d02231c47de389077f1a1706ac93eb
 ## Overview
 
 **The Vibexperience** is an innovative platform designed for music enthusiasts and DJs. It offers a vibrant and modern tech space where users can connect, share experiences, and access exclusive content such as DJ mixes, events, and personalized playlists.

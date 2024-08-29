@@ -2,29 +2,25 @@ const express = require('express');
 const router = express.Router();
 const Review = require('../models/review');
 const User = require('../models/user');
-const  ensureLoggedIn  = require('../middleware/ensureLoggedIn');
+const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
 router.post('/', ensureLoggedIn, async (req, res) => {
   try {
-      const { content, rating, dj_id } = req.body;
-      const reviewContent = {
-          content,
-          rating,
-          author: req.session.user._id,
-          dj: dj_id,
-      };
-      
-      const review = await Review.create(reviewContent);
-
-      const dj = await User.findById(dj_id);
-      dj.reviews.push(review._id);
-      console.log(dj);
-      await dj.save();
-
-      res.redirect(`/djs/${dj_id}`);
+    const { content, rating, dj_id } = req.body;
+    const reviewContent = {
+      content,
+      rating,
+      author: req.session.user._id,
+      dj: dj_id,
+    };
+    const review = await Review.create(reviewContent);
+    const dj = await User.findById(dj_id);
+    dj.reviews.push(review._id);
+    console.log(dj);
+    await dj.save();
+    res.redirect(`/djs/${dj_id}`);
   } catch (err) {
-      console.error(err);
-      res.status(500).send('Server Error');
+    res.status(500).send('Server Error');
   }
 });
 
