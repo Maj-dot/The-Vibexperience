@@ -24,7 +24,7 @@
   <ul>
     <% if (dj.reviews && dj.reviews.length > 0) { %>
       <% dj.reviews.forEach(function(review) { %>
-        <li><%= review.content %> - <strong>by <%= review.author.username %></strong></li>
+        <li><%= review.content %> -  by <strong><%= review.author.username %></strong></li>
       <% }) %>
     <% } else { %>
       <li>No reviews yet</li>

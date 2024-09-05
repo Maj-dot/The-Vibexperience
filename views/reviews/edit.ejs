@@ -10,7 +10,7 @@
   <%- include('../partials/header.ejs') %>
 <h3>Update Your Review</h3>
 <form action="/reviews/<%=review._id%>?_method=PUT" method="POST">
-    <label for="dj_id">SELECT DJ:</label>
+    <label for="dj_id">SELECT DJ:<%=review.dj_username%></label>
     <textarea name="content" required><%=review.content%></textarea>
     <label for="rating">Rating:</label>
     <select name="rating" required>

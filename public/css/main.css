@@ -1,14 +1,14 @@
+/* General page styling with dark techy gradient */
 html,
 body {
-  background: linear-gradient(135deg, #191414 0%, #A30052 100%);
+  background: linear-gradient(135deg, #1c1f29 0%, #252e3f 100%);
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background: linear-gradient(135deg, #191414 0%, #A30052 100%);
-  color: #FFFFFF;
+  color: #e0e0e0;
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
@@ -22,6 +22,7 @@ body {
   box-sizing: inherit;
 }
 
+/* Wrapper for content alignment */
 .wrapper {
   flex: 1;
   max-width: 1200px;
@@ -31,26 +32,29 @@ body {
   width: 100%;
 }
 
+/* Footer styling with darker tones */
 footer {
-  background: linear-gradient(135deg, #191414 0%, #A30052 100%);
-  color: #B3B3B3;
+  background: linear-gradient(135deg, #1c1f29 0%, #252e3f 100%);
+  color: #b3b3b3;
   padding: 40px 0;
   text-align: center;
 }
 
+/* Sleek button styling with cool hover effects */
 button {
-  background-color: #FF007F;
+  background-color: #0abde3;
   color: white;
-  border: 3mm ridge rgba(50, 90, 220, 0.981);
-  padding: 10px 20px;
+  border: none;
+  padding: 12px 25px;
   font-size: 1em;
-  border-radius: 5px;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: #E5006E;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #48dbfb; /* Lighter blue */
+  box-shadow: 0 4px 12px rgba(72, 219, 251, 0.5); /* Soft glow on hover */
+  transform: translateY(-5px); /* Lift on hover */
 }
 
 .button-group {
@@ -63,26 +67,28 @@ button:hover {
   flex: 1;
 }
 
+/* Techy links with subtle transitions */
 a {
-  color: #d000ff;
+  color: #0abde3;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  transition: color 0.3s, text-shadow 0.3s ease-in-out;
 }
 
 a:hover {
-  color: #FFFFFF; 
-  text-shadow: 0 0 10px #FF007F, 0 0 20px #00C9FF, 0 0 30px #FF007F; 
+  color: #48dbfb; 
+  text-shadow: 0 0 10px #0abde3, 0 0 20px #48dbfb; /* Soft glow */
 }
 
+/* Heading styles with subtle shadow */
 h1,
 h2,
 h3 {
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
-  color: #FFFFFF;
-  text-shadow: 0 0 10px white, 0 0 20px #00C9FF;
+  color: #ffffff;
+  text-shadow: 0 0 10px #0abde3, 0 0 15px #48dbfb; /* Soft neon-like glow */
 }
 
 h1 {
@@ -99,37 +105,39 @@ h3 {
 }
 
 p {
-  color: #B3B3B3;
+  color: #b3b3b3;
   line-height: 1.6;
   margin-bottom: 15px;
 }
 
+/* Navbar with a sleek, techy feel */
 nav {
   position: sticky;
   top: 0;
   width: 100%;
-  background: linear-gradient(135deg, #191414 0%, #FF007F 100%);
+  background: linear-gradient(135deg, #1c1f29 0%, #252e3f 100%);
   padding: 15px 0;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 0 0 10px #FF007F, 0 0 20px #00C9FF;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   margin: 0 15px;
+  text-shadow: 0 0 5px #0abde3;
 }
 
 nav a:hover {
-  color: #1DB954;
-  text-decoration: underline;
+  color: #48dbfb;
+  text-shadow: 0 0 15px #0abde3, 0 0 30px #48dbfb;
 }
 
+/* Section background with dark techy gradient */
 section {
-  background: linear-gradient(135deg, #191414 0%, #A30052  100%);
+  background: linear-gradient(135deg, #252e3f 0%, #1c1f29 100%);
   padding: 60px 20px;
   margin: 20px 0;
   border-bottom: 1px solid #333;
@@ -139,27 +147,28 @@ section {
 }
 
 section:last-of-type {
-  background-color: #A30052;
+  background-color: #1c1f29;
   border-bottom: none;
 }
 
-
+/* Input and text area with modern glassmorphism effect */
 input,
 textarea {
-  background-color: #2a2a2a78;
-  color: #FFFFFF;
-  border: 1px solid #A30052;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: rgba(38, 43, 54, 0.5); /* Glass effect */
+  color: #ffffff;
+  border: 1px solid #0abde3;
+  padding: 12px;
+  border-radius: 8px;
   width: 100%;
 }
 
 input:focus,
 textarea:focus {
-  border-color: #FF007F;
+  border-color: #48dbfb;
   outline: none;
 }
 
+/* Testimonial container with flexible layout */
 .testimonial-container {
   display: flex;
   flex-wrap: wrap;
@@ -168,12 +177,19 @@ textarea:focus {
 
 .testimonial {
   flex: 1 1 calc(33.333% - 40px);
-  background-color: #2a2a2aa7;
+  background-color: rgba(38, 43, 54, 0.5); /* Glass effect */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design for mobile screens */
 @media (max-width: 768px) {
   .wrapper {
     padding: 0 15px;
